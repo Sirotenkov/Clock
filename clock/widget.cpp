@@ -43,13 +43,22 @@ void Widget::paintEvent(QPaintEvent *event)
         painter.drawLine(x1, y1, x2, y2);
     }
 
-    // Отрисовка часовой стрелки
-    // -90 градусов - смещение относительно математического нуля,
-    // чтобы ноль у стрелок соответствовал 12 часам
-    auto const degrees = (360.0 / 12) * hours_;
-    auto const radians = qDegreesToRadians(degrees - 90);
-    auto x1 = x0, y1 = y0;
-    auto x2 = x0 + (r * 0.5) * qCos(radians), y2 = y0 + (r * 0.5) * qSin(radians);
-    painter.drawLine(x1, y1, x2, y2);
+    {   // Отрисовка часовой стрелки
+        // -90 градусов - смещение относительно математического нуля,
+        // чтобы ноль у стрелок соответствовал 12 часам
+        auto const degrees = (360.0 / 12) * hours_;
+        auto const radians = qDegreesToRadians(degrees - 90);
+        auto x1 = x0, y1 = y0;
+        auto x2 = x0 + (r * 0.5) * qCos(radians), y2 = y0 + (r * 0.5) * qSin(radians);
+        painter.drawLine(x1, y1, x2, y2);
+    }
+
+    {   // Отрисовка минутной стрелки
+        auto const degrees = (360.0 / 60) * minutes_;
+        auto const radians = qDegreesToRadians(degrees - 90);
+        auto x1 = x0, y1 = y0;
+        auto x2 = x0 + (r * 0.7) * qCos(radians), y2 = y0 + (r * 0.7) * qSin(radians);
+        painter.drawLine(x1, y1, x2, y2);
+    }
 
 }
