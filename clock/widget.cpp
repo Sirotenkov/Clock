@@ -12,6 +12,15 @@ Widget::~Widget()
 {
 }
 
+void Widget::onTimeout()
+{
+    auto const dateTime = QDateTime::currentDateTime();
+
+    hours_ = dateTime.time().hour();
+    minutes_ = dateTime.time().minute();
+    seconds_ = dateTime.time().second();
+}
+
 void Widget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);

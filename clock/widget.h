@@ -14,6 +14,9 @@ public:
 
     virtual void paintEvent(QPaintEvent *event);
 
+private slots:
+    void onTimeout();
+
 private:
     QTimer timer_;
     int hours_ {0};
