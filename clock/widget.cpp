@@ -61,4 +61,12 @@ void Widget::paintEvent(QPaintEvent *event)
         painter.drawLine(x1, y1, x2, y2);
     }
 
+    {   // Отрисовка секундной стрелки
+        auto const degrees = (360.0 / 60) * seconds_;
+        auto const radians = qDegreesToRadians(degrees - 90);
+        auto x1 = x0, y1 = y0;
+        auto x2 = x0 + (r * 0.8) * qCos(radians), y2 = y0 + (r * 0.8) * qSin(radians);
+        painter.drawLine(x1, y1, x2, y2);
+    }
+
 }
