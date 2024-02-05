@@ -6,6 +6,10 @@
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
+    timer_.setInterval(1000);
+    connect(&timer_, &QTimer::timeout, this, &Widget::onTimeout);
+
+    timer_.start();
 }
 
 Widget::~Widget()
@@ -19,6 +23,8 @@ void Widget::onTimeout()
     hours_ = dateTime.time().hour();
     minutes_ = dateTime.time().minute();
     seconds_ = dateTime.time().second();
+
+    update();
 }
 
 void Widget::paintEvent(QPaintEvent *event)
